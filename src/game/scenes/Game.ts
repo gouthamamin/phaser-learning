@@ -23,5 +23,15 @@ export class Game extends Scene {
         strokeThickness: 4,
       })
       .setOrigin(0.5, 0.5);
+
+    // player sprite
+    this.add
+        .sprite(width / 1.5, height / 1.5, "player")
+        .setDisplaySize(250, 250);
+        // .setScale(4,4)
+
+
   }
+
+  
 }

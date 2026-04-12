@@ -1,5 +1,10 @@
 import { GameObjects, Scene, Types } from "phaser";
 
+interface iLevelData{
+    level: number;
+    name: string;
+};
+
 export class Game extends Scene {
   private player: GameObjects.Sprite;
   private cursors: Types.Input.Keyboard.CursorKeys;
@@ -7,6 +12,11 @@ export class Game extends Scene {
   constructor() {
     super("Game");
   }
+
+  init(data: iLevelData){
+    console.log("Data received :", data);
+  };
+  
 
   create() {
     const { width, height } = this.scale;

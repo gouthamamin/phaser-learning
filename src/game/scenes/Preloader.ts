@@ -29,6 +29,7 @@ export class Preloader extends Scene
 
     preload ()
     {
+        this.scene.remove("Boot");
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
 

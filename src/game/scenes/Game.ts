@@ -2,7 +2,7 @@ import { GameObjects, Scene, Types } from "phaser";
 
 export class Game extends Scene {
   private player: GameObjects.Sprite;
-  private cursors : Types.Input.Keyboard.CursorKeys;
+  private cursors: Types.Input.Keyboard.CursorKeys;
 
   constructor() {
     super("Game");
@@ -35,10 +35,28 @@ export class Game extends Scene {
       .sprite(width / 1.5, height / 1.5, "player")
       .setDisplaySize(250, 250);
     // .setScale(4,4)
+
+    // animation
+    this.anims.create({
+      key: "idle",
+      frames: this.anims.generateFrameNumbers("player", { start: 4, end: 7 }),
+      frameRate: 10,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "walk",
+      frames: this.anims.generateFrameNumbers("player", { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1,
+    });
+
+    this.player.anims.play("idle");
   }
 
   setupEventListeners() {
-    // this.input.keyboard?.on("keydown", this.handleKeydown, this);
+    this.input.keyboard?.on("keydown", this.handleKeydown, this);
+    this.input.keyboard?.on("keyup", this.handleKeyUp, this);
     this.cursors = this.input.keyboard!.createCursorKeys()
   }
 
@@ -53,27 +71,31 @@ export class Game extends Scene {
     }
   }
 
+  handleKeyUp(){
+    this.player.anims.play("idle");
+  }
+
   handleMovement(isLeft: boolean) {
     const speed = 20;
     if (isLeft) {
       this.player.x -= speed;
-      this.player.setFlipX(false)
+      this.player.setFlipX(false);
+      this.player.anims.play("walk", true)
     } else {
       this.player.x += speed;
       this.player.setFlipX(true);
+      this.player.anims.play("walk", true)
     }
 
     // check boundary
     this.player.x = Phaser.Math.Clamp(this.player.x, 0, this.scale.width);
   }
 
-  update(){
-    if(this.cursors.left.isDown){
-        this.handleMovement(true);
-    }else if(this.cursors.right.isDown){
-        this.handleMovement(false);
+  update() {
+    if (this.cursors.left.isDown) {
+      this.handleMovement(true);
+    } else if (this.cursors.right.isDown) {
+      this.handleMovement(false);
     }
   }
 }
-
-

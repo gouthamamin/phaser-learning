@@ -13,5 +13,15 @@ export class Game extends Scene {
       .image(0, 0, "sky-background")
       .setOrigin(0, 0)
       .setDisplaySize(width, height);
+
+    // Game title
+    this.add
+      .text(width / 2, 250, "Test Game app", {
+        fontSize: 48,
+        color: "#fff",
+        stroke: "#000",
+        strokeThickness: 4,
+      })
+      .setOrigin(0.5, 0.5);
   }
 }

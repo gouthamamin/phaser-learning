@@ -1,7 +1,8 @@
-import { GameObjects, Scene } from "phaser";
+import { GameObjects, Scene, Types } from "phaser";
 
 export class Game extends Scene {
   private player: GameObjects.Sprite;
+  private cursors : Types.Input.Keyboard.CursorKeys;
 
   constructor() {
     super("Game");
@@ -37,7 +38,8 @@ export class Game extends Scene {
   }
 
   setupEventListeners() {
-    this.input.keyboard?.on("keydown", this.handleKeydown, this);
+    // this.input.keyboard?.on("keydown", this.handleKeydown, this);
+    this.cursors = this.input.keyboard!.createCursorKeys()
   }
 
   handleKeydown(event: KeyboardEvent) {
@@ -64,4 +66,14 @@ export class Game extends Scene {
     // check boundary
     this.player.x = Phaser.Math.Clamp(this.player.x, 0, this.scale.width);
   }
+
+  update(){
+    if(this.cursors.left.isDown){
+        this.handleMovement(true);
+    }else if(this.cursors.right.isDown){
+        this.handleMovement(false);
+    }
+  }
 }
+
+

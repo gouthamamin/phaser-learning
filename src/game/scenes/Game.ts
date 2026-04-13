@@ -7,6 +7,7 @@ interface iLevelData{
 
 export class Game extends Scene {
   private player: GameObjects.Sprite;
+  private enemy: GameObjects.Sprite;
   private cursors: Types.Input.Keyboard.CursorKeys;
 
   constructor() {
@@ -62,6 +63,9 @@ export class Game extends Scene {
     });
 
     this.player.anims.play("idle");
+
+    // enemy 
+    this.enemy = this.add.sprite(200, height / 1.5, "enemy").setDisplaySize(250,250);
   }
 
   setupEventListeners() {

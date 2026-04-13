@@ -12,6 +12,7 @@ export class Preloader extends Scene
 
         this.load.image('logo', 'logo.png');
         this.load.image('sky-background','sky-bg.png');
+        this.load.image('enemy','enemy.png');
 
         // load sprite sheet
         this.load.spritesheet("player","player_spritesheet_48x48.png",{

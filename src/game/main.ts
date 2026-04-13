@@ -23,6 +23,13 @@ const config: Phaser.Types.Core.GameConfig = {
     scale:{
         mode: Scale.FIT,
         autoCenter: Scale.CENTER_BOTH
+    },
+    physics: {
+        default: "arcade",
+        arcade: {
+            gravity: { x: 0, y: 0 },
+            debug: true,
+        }
     }
 };
 

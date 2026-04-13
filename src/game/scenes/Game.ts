@@ -66,6 +66,12 @@ export class Game extends Scene {
 
     // enemy 
     this.enemy = this.add.sprite(200, height / 1.5, "enemy").setDisplaySize(250,250);
+
+    // enable physics for characters
+    this.physics.add.existing(this.player);
+    this.physics.add.existing(this.enemy);
+
+    this.physics.add.collider(this.player, this.enemy, this.handleCollision)
   }
 
   setupEventListeners() {
@@ -111,5 +117,9 @@ export class Game extends Scene {
     } else if (this.cursors.right.isDown) {
       this.handleMovement(false);
     }
+  }
+
+  handleCollision(){
+    console.log("collision detected!!");
   }
 }

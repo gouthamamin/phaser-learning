@@ -1,4 +1,4 @@
-import { GameObjects, Scene, Types } from "phaser";
+import { GameObjects, Scene, Types, Math } from "phaser";
 
 interface iLevelData{
     level: number;
@@ -98,11 +98,11 @@ export class Game extends Scene {
     }
 
     // check boundary
-    this.player.x = Phaser.Math.Clamp(this.player.x, 0, this.scale.width);
+    this.player.x = Math.Clamp(this.player.x, 0, this.scale.width);
   }
 
   update() {
-    if (this.cursors.left.isDown) {
+    if (this.cursors && this.cursors.left.isDown) {
       this.handleMovement(true);
     } else if (this.cursors.right.isDown) {
       this.handleMovement(false);
